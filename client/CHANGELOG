@@ -1,0 +1,23 @@
+* tpc-w_ESW_1.5
+
+- Added rbe.EBTPCW0Factory class to support a read-only client interaction.  Just use factory 0 (with arg -t 0) to RBE shell client.
+
+* tpc-w_ESW_1.4
+
+- Corrected behaviour of the original implementation (by deadpixel.de) regarding the handling of SQLExceptions.  It just printed the stack trace and continued which caused a few NullPointers ahead.  It even showed to the test client this misbehaviour.  Now, when an SQLException occurs, the transaction is restarted.  This is similar to Transaction.withTransaction template method from JVSTM
+
+- Removed the unnecessary Java synchronization code when creating new entries in the database, such as Order, Carts, etc.
+
+* tpc-w_ESW_1.3
+
+- Decreased the statistics buffer size just a little bit to fit in a laptop's memory
+
+* tpc-w_ESW_1.2
+
+- Increased the statistics buffer size
+
+
+* tpc-w_ESW_1.1
+
+- Updated main.properties to suggest a better webappDir default value
+

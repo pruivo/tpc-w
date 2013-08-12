@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+
+    <parent>
+        <groupId>eu.cloudm.tpcw</groupId>
+        <version>1.0</version>
+        <artifactId>tpcw-parent</artifactId>
+        <relativePath>parent/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>tpcw-aggregator</artifactId>
+
+    <name>TPC-W Aggregator</name>
+    <description>The aggregator for TPC-W</description>
+    <packaging>pom</packaging>
+
+    <modules>
+        <module>parent</module>
+        <module>loadbalance</module>
+        <module>server</module>
+    </modules>
+
+    <properties>
+        <distribution.name>tpcw-${project.version}</distribution.name>
+        <distribution.artifact>target/distribution/${distribution.name}</distribution.artifact>
+        <distribution.zipfile>target/distribution/${distribution.name}.zip</distribution.zipfile>
+    </properties>
+
+</project>

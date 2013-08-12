@@ -1,0 +1,130 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>eu.cloudm.tpcw</groupId>
+        <version>1.0</version>
+        <artifactId>tpcw-parent</artifactId>
+        <relativePath>../parent/pom.xml</relativePath>
+    </parent>
+
+    <artifactId>tpcw-loadbalance</artifactId>
+    <packaging>war</packaging>
+
+    <name>TPC-W Load Balance</name>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>pt.ist</groupId>
+                <artifactId>dml-maven-plugin</artifactId>
+                <version>${version.fenixframework}</version>
+                <configuration>
+                    <!-- use infinispan backend for running tests -->
+                    <codeGeneratorClassName>${code.generator.class}</codeGeneratorClassName>
+                    <params>
+                        <ptIstTxIntrospectorEnable>false</ptIstTxIntrospectorEnable>
+                        <ptIstDapEnable>false</ptIstDapEnable>
+                    </params>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate-domain</goal>
+                            <goal>post-compile</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <artifactId>maven-antrun-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <phase>generate-sources</phase>
+                        <configuration>
+                            <tasks>
+                                <!-- <filter token="sessionIdString" value="${session.id.string}" /> -->
+                                <!-- <filter token="num.item" value="${NUM_ITEMS}" /> -->
+                                <filter token="sessionIdString" value="${token.sessionIdString}"/>
+                                <filter token="num.item" value="${token.num.item}"/>
+                                <mkdir dir="${project.build.directory}/generated-sources/template-java"/>
+                                <copy todir="${project.build.directory}/generated-sources/template-java"
+                                      filtering="on"
+                                      overwrite="true">
+                                    <fileset dir="${basedir}/src/main/template-java">
+                                        <include name="**/*.java"/>
+                                    </fileset>
+                                </copy>
+                            </tasks>
+                        </configuration>
+                        <goals>
+                            <goal>run</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>${version.maven.build-helper-plugin}</version>
+                <executions>
+                    <execution>
+                        <id>add-source</id>
+                        <phase>generate-sources</phase>
+                        <goals>
+                            <goal>add-source</goal>
+                        </goals>
+                        <configuration>
+                            <sources>
+                                <source>target/generated-sources/template-java</source>
+                            </sources>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>add-resource</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>add-resource</goal>
+                        </goals>
+                        <configuration>
+                            <resources>
+                                <resource>
+                                    <directory>target/generated-sources/dml-maven-plugin</directory>
+                                    <excludes>
+                                        <exclude>**/*.java</exclude>
+                                    </excludes>
+                                </resource>
+                            </resources>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat6-maven-plugin</artifactId>
+                <version>${version.maven.tomcat-plugin}</version>
+                <configuration>
+                    <username>${tomcat.username}</username>
+                    <password>${tomcat.password}</password>
+                    <path>${tomcat.context.path}</path>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>pt.ist</groupId>
+            <artifactId>fenix-framework-backend-infinispan</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-log4j12</artifactId>
+        </dependency>
+    </dependencies>
+
+</project>

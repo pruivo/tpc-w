@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>eu.cloudm.tpcw</groupId>
+    <artifactId>tpcw-parent</artifactId>
+    <version>1.0</version>
+    <packaging>pom</packaging>
+    <name>TPC-W Common Parent</name>
+    <description>TPC-W common parent POM module</description>
+
+    <properties>
+        <!--  PICK ONE CODE GENERATOR HERE BY UNCOMMENTING THE CORRECT VALUE -->
+        <!-- <code.generator.class>pt.ist.fenixframework.backend.mem.MemCodeGenerator</code.generator.class> -->
+        <code.generator.class>pt.ist.fenixframework.backend.infinispan.InfinispanCodeGenerator</code.generator.class>
+        <!-- <code.generator.class>pt.ist.fenixframework.backend.ogm.OgmCodeGenerator</code.generator.class> -->
+        <!--<code.generator.class>pt.ist.fenixframework.backend.jvstm.JVSTMCodeGenerator</code.generator.class>-->
+        <!-- <code.generator.class>pt.ist.fenixframework.backend.jvstm.infinispan.JvstmIspnCodeGenerator</code.generator.class> -->
+        <!-- <code.generator.class>pt.ist.fenixframework.backend.jvstmojb.codeGenerator.FenixCodeGeneratorOneBoxPerObject</code.generator.class> -->
+
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+
+        <!-- PLEASE KEEP THIS LIST SORTED ALPHABETICALLY!!!  THANKS -->
+        <version.c3p0>0.9.1.2</version.c3p0>
+        <version.fenixframework>2.10-cloudtm-SNAPSHOT</version.fenixframework>
+        <version.infinispan>5.2.8-cloudtm-SNAPSHOT</version.infinispan>
+        <version.maven.build-helper-plugin>1.7</version.maven.build-helper-plugin>
+        <version.maven.tomcat-plugin>2.0</version.maven.tomcat-plugin>
+        <version.mysql.driver>5.1.19</version.mysql.driver>
+        <version.slf4j.api>1.7.2</version.slf4j.api>
+
+        <!-- TPCW-specific properties -->
+        <NUM_EBS>10</NUM_EBS>
+        <NUM_ITEMS>1000</NUM_ITEMS>
+
+        <!-- filtering tokens -->
+        <token.num.item>${NUM_ITEMS}</token.num.item>
+        <token.sessionIdString>jsessionid=</token.sessionIdString>
+        <!-- tomcat access deploy/undeploy/etc. -->
+        <tomcat.username>test</tomcat.username>
+        <tomcat.password>test</tomcat.password>
+        <tomcat.context.path>/tpcw</tomcat.context.path>
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>pt.ist</groupId>
+                <artifactId>fenix-framework-backend-infinispan</artifactId>
+                <version>${version.fenixframework}</version>
+            </dependency>
+
+            <!-- Required by Infinispan-JDBC cache store -->
+            <dependency>
+                <groupId>org.infinispan</groupId>
+                <artifactId>infinispan-cachestore-jdbc</artifactId>
+                <version>${version.infinispan}</version>
+            </dependency>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${version.mysql.driver}</version>
+            </dependency>
+            <dependency>
+                <groupId>c3p0</groupId>
+                <artifactId>c3p0</artifactId>
+                <version>${version.c3p0}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.slf4j</groupId>
+                <artifactId>slf4j-log4j12</artifactId>
+                <version>${version.slf4j.api}</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+    <pluginRepositories>
+        <pluginRepository>
+            <id>fenix-ashes-maven-repository</id>
+            <url>http://cloudtm.ist.utl.pt:8083/nexus/content/groups/public/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+    <repositories>
+        <repository>
+            <id>fenix-ashes-maven-repository</id>
+            <url>http://cloudtm.ist.utl.pt:8083/nexus/content/groups/public/</url>
+        </repository>
+    </repositories>
+
+    <build>
+        <pluginManagement>
+            <plugins>
+                <plugin>
+                    <groupId>org.apache.maven.plugins</groupId>
+                    <artifactId>maven-compiler-plugin</artifactId>
+                    <!--<version>3.0</version>-->
+                    <configuration>
+                        <source>1.6</source>
+                        <target>1.6</target>
+                    </configuration>
+                </plugin>
+                <plugin>
+                    <groupId>org.apache.tomcat.maven</groupId>
+                    <artifactId>tomcat6-maven-plugin</artifactId>
+                    <version>2.0</version>
+                </plugin>
+                <!-- <plugin> -->
+                <!--     <groupId>org.apache.tomcat.maven</groupId> -->
+                <!--     <artifactId>tomcat7-maven-plugin</artifactId> -->
+                <!--     <version>2.0</version> -->
+                <!-- </plugin> -->
+            </plugins>
+        </pluginManagement>
+    </build>
+
+</project>
