@@ -19,7 +19,7 @@
         <locking
                 isolationLevel="REPEATABLE_READ"
                 concurrencyLevel="32"
-                writeSkewCheck="false"
+                writeSkewCheck="true"
                 useLockStriping="false"
                 lockAcquisitionTimeout="250"/>
         <jmxStatistics
@@ -42,7 +42,8 @@
         </transaction>
         <clustering mode="d">
             <hash
-                    numOwners="3" />
+                    factory="org.infinispan.dataplacement.ch.LCRDConsistentHashFactory"
+                    numOwners="2" />
             <sync
                     replTimeout="15000"/>
             <stateTransfer

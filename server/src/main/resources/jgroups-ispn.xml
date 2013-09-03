@@ -33,7 +33,7 @@
             oob_thread_pool.rejection_policy="discard"
             />
     <TCPGOSSIP
-            initial_hosts="10.100.0.1[40000]"
+            initial_hosts="198.202.120.123[40000]"
             timeout="2000"
             num_initial_members="1"
             break_on_coord_rsp="true"

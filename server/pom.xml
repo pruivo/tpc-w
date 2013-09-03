@@ -26,8 +26,9 @@
                     <!-- use infinispan backend for running tests -->
                     <codeGeneratorClassName>${code.generator.class}</codeGeneratorClassName>
                     <params>
-                        <ptIstTxIntrospectorEnable>false</ptIstTxIntrospectorEnable>
-                        <ptIstDapEnable>false</ptIstDapEnable>
+                        <ptIstTxIntrospectorEnable>true</ptIstTxIntrospectorEnable>
+                        <ptIstDapEnable>true</ptIstDapEnable>
+                        <automaticLocalityHints>true</automaticLocalityHints>
                     </params>
                 </configuration>
                 <executions>
