@@ -56,9 +56,9 @@
                 objectLookupFactory="org.infinispan.dataplacement.hm.HashMapObjectLookupFactory"
                 maxNumberOfKeysToRequest="1000">
         </dataPlacement>
-        <!--versioning
+        <versioning
                 enabled="true"
-                versioningScheme="GMU"/-->
+                versioningScheme="SIMPLE"/>
         <customInterceptors>
             <interceptor index="0" class="org.infinispan.distribution.wrappers.CustomStatsInterceptor" />
             <!--interceptor index="1" class="org.infinispan.stats.topK.StreamLibInterceptor" /-->
