@@ -67,7 +67,7 @@ public class TPCW_order_display_servlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
-        final String txClass = req.getServletPath();
+        final String txClass = "TPCW-order-display-servlet";//req.getServletPath();
         try {
             PrintWriter out = res.getWriter();
             //HttpSession session = req.getSession(false);

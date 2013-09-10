@@ -96,7 +96,7 @@ public class TPCW_buy_confirm_servlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
-        final String txClass = req.getServletPath();
+        final String txClass = "TPCW-buy-confirm-servlet";//req.getServletPath();
         try {
             int i;
             String url;

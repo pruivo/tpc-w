@@ -70,7 +70,7 @@ public class TPCW_best_sellers_servlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
-        final String txClass = req.getServletPath();
+        final String txClass = "TPCW-best-sellers-servlet";//req.getServletPath();
         try {
             String url;
             PrintWriter out = res.getWriter();

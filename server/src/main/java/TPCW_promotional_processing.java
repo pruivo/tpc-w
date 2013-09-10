@@ -69,7 +69,7 @@ public class TPCW_promotional_processing {
                                          HttpServletRequest req,
                                          HttpServletResponse res,
                                          int new_sid) {
-        final String txClass = req.getServletPath();
+        final String txClass = "TPCW-promotional-processing";//req.getServletPath();
         int I_ID = TPCW_Util.getRandomI_ID();
         Vector related_item_ids = new Vector();
         Vector thumbnails = new Vector();

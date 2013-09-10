@@ -69,7 +69,7 @@ public class TPCW_admin_request_servlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
-        final String txClass = req.getServletPath();
+        final String txClass = "TPCW-admin-request-servlet";//req.getServletPath();
         try {
             String url;
             PrintWriter out = res.getWriter();

@@ -60,7 +60,7 @@ public class TPCW_say_hello {
 
     public static void print_hello(HttpSession session, HttpServletRequest req,
                                    PrintWriter out) {
-        final String txClass = req.getServletPath();
+        final String txClass = "TPCW-say-hello";//req.getServletPath();
         //If we have seen this session id before
         if (!session.isNew()) {
             int C_ID[] = (int[]) session.getAttribute("C_ID");

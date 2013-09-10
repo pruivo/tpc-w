@@ -70,7 +70,7 @@ public class TPCW_execute_search extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
-        final String txClass = req.getServletPath();
+        final String txClass = "TPCW-execute-search";//req.getServletPath();
         try {
             int i;
 
