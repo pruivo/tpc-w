@@ -108,7 +108,7 @@ public class TPCW_Populate implements Runnable {
 //     private static final String dbName = "jdbc:mysql://localhost/tpcw?user=tpcw&password=tpcw";
 
    // NUMBER of domain objects created per transaction
-   private static final int NUMBER_OBJECTS_TRANSACTION = 100;
+   private static final int NUMBER_OBJECTS_TRANSACTION = 2;//100
    //   private static final int NUMBER_OBJECTS_TRANSACTION = 1000000;
 
    //ATTENTION: The NUM_EBS and NUM_ITEMS variables are the only variables
@@ -930,7 +930,7 @@ public class TPCW_Populate implements Runnable {
    }
 
    private static void logProgress(String table, int tx, int numberOfTx) {
-      System.out.println("Populating table [" + table + "]. Executing transaction " + tx + " out of " + numberOfTx);
+      //System.out.println("Populating table [" + table + "]. Executing transaction " + tx + " out of " + numberOfTx);
    }
 
    private static void logProgress(String table) {

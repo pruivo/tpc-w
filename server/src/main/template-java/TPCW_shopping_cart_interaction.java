@@ -71,7 +71,7 @@ public class TPCW_shopping_cart_interaction extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
-        final String txClass = req.getServletPath();
+        final String txClass = "TPCW-shopping-cart-interaction";//req.getServletPath();
         try {
             Cart cart;
             String url;

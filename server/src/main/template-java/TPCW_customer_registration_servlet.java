@@ -68,7 +68,7 @@ public class TPCW_customer_registration_servlet extends HttpServlet {
 
     public void doGet(HttpServletRequest req, HttpServletResponse res)
             throws IOException, ServletException {
-        final String txClass = req.getServletPath();
+        final String txClass = "TPCW-customer-registration-servlet";//req.getServletPath();
         try {
             String url;
             //HttpSession session = req.getSession(false);
